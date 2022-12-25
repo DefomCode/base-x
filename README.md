@@ -3,8 +3,9 @@
 
 [![N|Презентация](https://i.imgur.com/AO7pIGQ.png)](https://disk.yandex.ru/d/eXuqVqLwCGWxqg)
 
-[![Build Status](https://i.imgur.com/rgbfIJ0.png)](https://disk.yandex.ru/i/uOYjnmv8QwEMCQ)
+[![Техническое задание](https://i.imgur.com/rgbfIJ0.png)](https://disk.yandex.ru/i/uOYjnmv8QwEMCQ)
 
+[![Техническое задание](https://i.imgur.com/l2Mo2Up.png)](https://disk.yandex.ru/i/uOYjnmv8QwEMCQ)
 
 
 
