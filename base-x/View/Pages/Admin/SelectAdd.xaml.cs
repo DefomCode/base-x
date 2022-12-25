@@ -1,4 +1,5 @@
-﻿using base_x.View.Pages.Admin.AdminEdit;
+﻿using base_x.Core;
+using base_x.View.Pages.Admin.AdminEdit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,5 +62,13 @@ namespace base_x.View.Pages.Admin
             FrameSelectAdd.Content = new UserAdd();
         }
 
+        private async void btnSaveAll_Click(object sender, RoutedEventArgs e)
+        {
+            await FrameNavigate.DB.SaveChangesAsync();
+            MessageBox.Show("Изменения успешно сохранены!",
+                            "Системное уведомление",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+        }
     }
 }

@@ -365,6 +365,7 @@
     <Resource Include="BaseX.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Check File.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

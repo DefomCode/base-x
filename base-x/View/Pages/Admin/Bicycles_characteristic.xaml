@@ -44,7 +44,7 @@
                                 Foreground="#89C5B7"
                                 x:Name="btnDelete"
                                 Click="btnDelete_Click"
-                                ToolTip="Удалить характеристики велосипед"
+                                ToolTip="Удалить характеристики велосипеда"
                                 BorderBrush="#008D6B"
                                 Style="{StaticResource MaterialDesignFlatLightButton}">
                             <StackPanel Orientation="Horizontal">

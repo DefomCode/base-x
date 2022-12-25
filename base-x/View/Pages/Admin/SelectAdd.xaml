@@ -75,6 +75,44 @@
 
 
         </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,50">
+            <Button Background="#3AB195"
+                                Foreground="Black"
+                                x:Name="btnSaveAll"
+                                Click="btnSaveAll_Click"
+                                ToolTip="Сохранить"
+                                BorderBrush="#008D6B" Height="100" Width="700">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="DarkGreen"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Image Source="/Images/Check File.png" Margin="0,0,5,0"/>
+                    <TextBlock TextAlignment="Center"
+                               FontSize="32"
+                               VerticalAlignment="Center"> Сохранить изменения в таблицах </TextBlock>
+
+                </StackPanel>
+            </Button>
+        </StackPanel>
         <Frame x:Name="FrameSelectAdd" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>
