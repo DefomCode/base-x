@@ -1,0 +1,65 @@
+﻿<Page x:Class="base_x.View.Guest_page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:base_x.View"
+      mc:Ignorable="d" 
+      Title="Guest_page"
+              Background="#3AB195"
+        Height="1024" Width="1980">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="/Images/Frame 3BackGround.png" 
+               Grid.Row="1" Grid.ColumnSpan="5"/>
+
+
+        <Button x:Name="btn_close" Click="btn_close_Click" 
+                Grid.Column="4" HorizontalAlignment="Center"
+                Style="{StaticResource ButtonTransparent}"
+                ToolTip="Закрыть приложение">
+            <Image Source="/Images/Close.png" />
+        </Button>
+
+        <Button x:Name="btn_add" Click="btn_add_Click"
+                Grid.Column="0" HorizontalAlignment="Center"
+                Style="{StaticResource ButtonTransparent}">
+            <Image Source="/Images/Group 16 (1).png" 
+                   ToolTip="Перейти к действиям"/>
+        </Button>
+
+        <Button x:Name="Bicycles_characteristic" Click="Bicycles_characteristic_Click"
+                Grid.Column="1" Margin="7,7,7,7"
+                Style="{StaticResource ButtonW}">
+            <TextBlock TextAlignment="Center"> Модели и их <LineBreak/> характеристики</TextBlock>
+        </Button>
+
+        <Button x:Name="Bicycle" Click="Bicycle_Click"
+                Grid.Column="2" Margin="7,7,7,7"
+                Style="{StaticResource ButtonW}"
+                Content="Велосипеды"/>
+
+        <Button x:Name="Review" Click="Review_Click"
+                Grid.Column="3" Margin="7,7,7,7"
+                Style="{StaticResource ButtonW}"
+                Content="Отзывы"/>
+
+        <Frame x:Name="GuestFrame" Grid.Row="1" Grid.ColumnSpan="5" />
+
+    </Grid>
+</Page>

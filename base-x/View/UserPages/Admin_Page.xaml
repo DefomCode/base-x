@@ -1,0 +1,87 @@
+﻿<Page x:Class="base_x.View.UserPages.Admin_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:base_x.View.UserPages"
+      mc:Ignorable="d" 
+      Title="Admin_Page" 
+              Background="#3AB195" 
+        Height="1024" Width="1980">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.6*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+
+
+        <Image Source="/Images/Frame 3BackGround.png" 
+               Grid.Row="1" Grid.ColumnSpan="9"/>
+        <Button x:Name="btn_close" Click="btn_close_Click" 
+                Grid.Column="8" HorizontalAlignment="Center"
+                Style="{StaticResource ButtonTransparent}"
+                ToolTip="Закрыть приложение">
+            <Image Source="/Images/Close.png" />
+        </Button>
+
+        <Button x:Name="btn_add" Click="btn_add_Click"
+                Grid.Column="0" HorizontalAlignment="Center"
+                Style="{StaticResource ButtonTransparent}">
+            <Image Source="/Images/Group 16 (1).png" 
+                   ToolTip="Добавить строчку"/>
+        </Button>
+
+        <Button x:Name="Bicycles_characteristic" Click="Bicycles_characteristic_Click"
+                Grid.Column="1" Margin="7,7,7,7"
+                Style="{StaticResource ButtonW}">
+            <TextBlock TextAlignment="Center"> Модели и их <LineBreak/> характеристики </TextBlock>
+        </Button>
+
+        <Button x:Name="Велосипеды" Click="Bicycle_Click"
+                Grid.Column="2" Margin="7,7,7,7"
+                Style="{StaticResource ButtonW}"
+                Content="Велосипеды"/>
+
+        <Button x:Name="Order" Click="Order_Click"
+                Grid.Column="3" Margin="7,7,7,7"
+                Style="{StaticResource ButtonW}"
+                Content="Заказы"/>
+
+        <Button x:Name="Review" Click="Review_Click"
+                Grid.Column="4" Margin="7,7,7,7"
+                Style="{StaticResource ButtonW}"
+                Content="Отзывы"/>
+
+        <Button x:Name="Client" Click="Client_Click"
+                Grid.Column="5" Margin="7,7,7,7"
+                Style="{StaticResource ButtonW}"
+                Content="Client"/>
+
+        <Button x:Name="Client_adress" Click="Client_adress_Click"
+                Grid.Column="6" Margin="7,7,7,7"
+                Style="{StaticResource ButtonW}">
+            <TextBlock TextAlignment="Center"> Адреса <LineBreak/> клиентов </TextBlock>
+        </Button>
+
+        <Button x:Name="User" Click="User_Click"
+                Grid.Column="7" Margin="7,7,7,7"
+                Style="{StaticResource ButtonW}"
+                Content="Пользователь"/>
+
+        <Frame x:Name="AdminFrame" Grid.Row="1" Grid.ColumnSpan="9" />
+    </Grid>
+        
+</Page>

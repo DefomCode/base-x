@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="acdc99a6c5d645168c7016024e295d46" Name="Diagram1">
+        <EntityTypeShape EntityType="Base_xModel.Bicycle" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Base_xModel.Bicycles_characteristic" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Base_xModel.Client" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Base_xModel.Client_adress" Width="1.5" PointX="9.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Base_xModel.Order" Width="1.5" PointX="9.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Base_xModel.Review" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Base_xModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Base_xModel.User" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="Base_xModel.FK_Bicycle_Bicycles_characteristics1" ManuallyRouted="false" />
+        <AssociationConnector Association="Base_xModel.FK_Orders_Bicycle" ManuallyRouted="false" />
+        <AssociationConnector Association="Base_xModel.FK_Review_Bicycle" ManuallyRouted="false" />
+        <AssociationConnector Association="Base_xModel.FK_Client_adress_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="Base_xModel.FK_Client_Review" ManuallyRouted="false" />
+        <AssociationConnector Association="Base_xModel.FK_Orders_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="Base_xModel.FK_Order_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

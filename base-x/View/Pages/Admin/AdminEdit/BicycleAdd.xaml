@@ -1,0 +1,73 @@
+﻿<Page x:Class="base_x.View.Pages.Admin.AdminEdit.BicycleAdd"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:base_x.View.Pages.Admin.AdminEdit"
+      mc:Ignorable="d" 
+      Title="BicycleAdd" Height="896" Width="1980"
+      Background="#237461">
+
+    <Grid>
+        <StackPanel 
+            Orientation="Vertical"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,20,0,0">
+                <TextBox x:Name="tbBicycleName"
+            Background="#6ABDAA"
+            BorderBrush="#6ABDAA"
+            materialDesign:HintAssist.Hint="Название велосипеда"
+            VerticalContentAlignment="Center"
+            FontSize="36" Width="600"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,20,0,0">
+                <TextBox x:Name="tbModel"
+                     Background="#6ABDAA"
+            BorderBrush="#6ABDAA"
+            materialDesign:HintAssist.Hint="Модель велосипеда"
+            VerticalContentAlignment="Center"
+            FontSize="36" Width="600">
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,20,0,0">
+                <TextBox x:Name="tbPrice"
+                     Background="#6ABDAA"
+            BorderBrush="#6ABDAA"
+            materialDesign:HintAssist.Hint="Цена(в руб.)"
+            VerticalContentAlignment="Center"
+            FontSize="36" Width="600">
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,20,0,0">
+                <TextBox x:Name="tbColor"
+            Background="#6ABDAA"
+            BorderBrush="#6ABDAA"
+            materialDesign:HintAssist.Hint="Цвет"
+            VerticalContentAlignment="Center"
+            FontSize="36" Width="600"/>
+            </StackPanel>
+
+            <Button x:Name="btn_save" Click="btn_save_Click"
+                    Style="{StaticResource ResourceKey=ButtonTransparent}"
+            Height="130" Width="600" Margin="0,100,0,0">
+
+                <Image Source="/Images/saveButton.png" />
+
+            </Button>
+
+
+
+
+        </StackPanel>
+    </Grid>
+</Page>

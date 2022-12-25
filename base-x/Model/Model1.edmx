@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Base_xModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bicycle">
+          <Key>
+            <PropertyRef Name="Bicycle_code" />
+          </Key>
+          <Property Name="Bicycle_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bicycle_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="money" />
+          <Property Name="Сolor" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Bicycles_characteristic">
+          <Key>
+            <PropertyRef Name="Model" />
+          </Key>
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Material" Type="nvarchar" MaxLength="50" />
+          <Property Name="Brake_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Seat_material" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Client_code" />
+          </Key>
+          <Property Name="Client_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Review_code" Type="int" />
+          <Property Name="Phone" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Client_adress">
+          <Key>
+            <PropertyRef Name="Adress_code" />
+          </Key>
+          <Property Name="Adress_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_code" Type="int" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Postal_code" Type="numeric" Precision="6" Scale="0" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_code" />
+          </Key>
+          <Property Name="Order_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_code" Type="int" />
+          <Property Name="Date_order" Type="date" />
+          <Property Name="Bicycle_code" Type="int" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Review_code" />
+          </Key>
+          <Property Name="Review_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_Review" Type="nvarchar(max)" />
+          <Property Name="Bicycle_code" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Userpassword" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Bicycle_Bicycles characteristics1">
+          <End Role="Bicycles_characteristic" Type="Self.Bicycles_characteristic" Multiplicity="0..1" />
+          <End Role="Bicycle" Type="Self.Bicycle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bicycles_characteristic">
+              <PropertyRef Name="Model" />
+            </Principal>
+            <Dependent Role="Bicycle">
+              <PropertyRef Name="Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_adress_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Client_adress" Type="Self.Client_adress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Client_code" />
+            </Principal>
+            <Dependent Role="Client_adress">
+              <PropertyRef Name="Client_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Review">
+          <End Role="Review" Type="Self.Review" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="Review_code" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Review_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Bicycle">
+          <End Role="Bicycle" Type="Self.Bicycle" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bicycle">
+              <PropertyRef Name="Bicycle_code" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Bicycle_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Client_code" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Client_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Bicycle">
+          <End Role="Bicycle" Type="Self.Bicycle" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bicycle">
+              <PropertyRef Name="Bicycle_code" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="Bicycle_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Base_xModelContainer">
+          <EntitySet Name="Bicycle" EntityType="Self.Bicycle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bicycles_characteristic" EntityType="Self.Bicycles_characteristic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client_adress" EntityType="Self.Client_adress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bicycle_Bicycles characteristics1" Association="Self.FK_Bicycle_Bicycles characteristics1">
+            <End Role="Bicycles_characteristic" EntitySet="Bicycles_characteristic" />
+            <End Role="Bicycle" EntitySet="Bicycle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_adress_Client" Association="Self.FK_Client_adress_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Client_adress" EntitySet="Client_adress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Review" Association="Self.FK_Client_Review">
+            <End Role="Review" EntitySet="Review" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Bicycle" Association="Self.FK_Orders_Bicycle">
+            <End Role="Bicycle" EntitySet="Bicycle" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Client" Association="Self.FK_Orders_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Bicycle" Association="Self.FK_Review_Bicycle">
+            <End Role="Bicycle" EntitySet="Bicycle" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Base_xModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bicycle">
+          <Key>
+            <PropertyRef Name="Bicycle_code" />
+          </Key>
+          <Property Name="Bicycle_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bicycle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Сolor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bicycles_characteristic" Relationship="Self.FK_Bicycle_Bicycles_characteristics1" FromRole="Bicycle" ToRole="Bicycles_characteristic" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Orders_Bicycle" FromRole="Bicycle" ToRole="Order" />
+          <NavigationProperty Name="Review" Relationship="Self.FK_Review_Bicycle" FromRole="Bicycle" ToRole="Review" />
+        </EntityType>
+        <EntityType Name="Bicycles_characteristic">
+          <Key>
+            <PropertyRef Name="Model" />
+          </Key>
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Brake_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Seat_material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bicycle" Relationship="Self.FK_Bicycle_Bicycles_characteristics1" FromRole="Bicycles_characteristic" ToRole="Bicycle" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Client_code" />
+          </Key>
+          <Property Name="Client_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Review_code" Type="Int32" />
+          <Property Name="Phone" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Client_adress" Relationship="Self.FK_Client_adress_Client" FromRole="Client" ToRole="Client_adress" />
+          <NavigationProperty Name="Review" Relationship="Self.FK_Client_Review" FromRole="Client" ToRole="Review" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Orders_Client" FromRole="Client" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Client_adress">
+          <Key>
+            <PropertyRef Name="Adress_code" />
+          </Key>
+          <Property Name="Adress_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_code" Type="Int32" />
+          <Property Name="Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Postal_code" Type="Decimal" Precision="6" Scale="0" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_adress_Client" FromRole="Client_adress" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_code" />
+          </Key>
+          <Property Name="Order_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_code" Type="Int32" />
+          <Property Name="Date_order" Type="DateTime" Precision="0" />
+          <Property Name="Bicycle_code" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="Bicycle" Relationship="Self.FK_Orders_Bicycle" FromRole="Order" ToRole="Bicycle" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Orders_Client" FromRole="Order" ToRole="Client" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Order_User" FromRole="Order" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Review_code" />
+          </Key>
+          <Property Name="Review_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_Review" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bicycle_code" Type="Int32" />
+          <NavigationProperty Name="Bicycle" Relationship="Self.FK_Review_Bicycle" FromRole="Review" ToRole="Bicycle" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Review" FromRole="Review" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Userpassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_User" FromRole="User" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_Bicycle_Bicycles_characteristics1">
+          <End Role="Bicycles_characteristic" Type="Self.Bicycles_characteristic" Multiplicity="0..1" />
+          <End Role="Bicycle" Type="Self.Bicycle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bicycles_characteristic">
+              <PropertyRef Name="Model" />
+            </Principal>
+            <Dependent Role="Bicycle">
+              <PropertyRef Name="Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Bicycle">
+          <End Role="Bicycle" Type="Self.Bicycle" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bicycle">
+              <PropertyRef Name="Bicycle_code" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Bicycle_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Bicycle">
+          <End Role="Bicycle" Type="Self.Bicycle" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bicycle">
+              <PropertyRef Name="Bicycle_code" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="Bicycle_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_adress_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Client_adress" Type="Self.Client_adress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Client_code" />
+            </Principal>
+            <Dependent Role="Client_adress">
+              <PropertyRef Name="Client_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Review">
+          <End Role="Review" Type="Self.Review" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="Review_code" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Review_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Client_code" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Client_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Base_xEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bicycle" EntityType="Self.Bicycle" />
+          <EntitySet Name="Bicycles_characteristic" EntityType="Self.Bicycles_characteristic" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Client_adress" EntityType="Self.Client_adress" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="Review" EntityType="Self.Review" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Bicycle_Bicycles_characteristics1" Association="Self.FK_Bicycle_Bicycles_characteristics1">
+            <End Role="Bicycles_characteristic" EntitySet="Bicycles_characteristic" />
+            <End Role="Bicycle" EntitySet="Bicycle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Bicycle" Association="Self.FK_Orders_Bicycle">
+            <End Role="Bicycle" EntitySet="Bicycle" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Bicycle" Association="Self.FK_Review_Bicycle">
+            <End Role="Bicycle" EntitySet="Bicycle" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_adress_Client" Association="Self.FK_Client_adress_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Client_adress" EntitySet="Client_adress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Review" Association="Self.FK_Client_Review">
+            <End Role="Review" EntitySet="Review" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Client" Association="Self.FK_Orders_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Base_xModelContainer" CdmEntityContainer="Base_xEntities">
+          <EntitySetMapping Name="Bicycle">
+            <EntityTypeMapping TypeName="Base_xModel.Bicycle">
+              <MappingFragment StoreEntitySet="Bicycle">
+                <ScalarProperty Name="Bicycle_code" ColumnName="Bicycle_code" />
+                <ScalarProperty Name="Bicycle_name" ColumnName="Bicycle_name" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Сolor" ColumnName="Сolor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bicycles_characteristic">
+            <EntityTypeMapping TypeName="Base_xModel.Bicycles_characteristic">
+              <MappingFragment StoreEntitySet="Bicycles_characteristic">
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Brake_type" ColumnName="Brake_type" />
+                <ScalarProperty Name="Seat_material" ColumnName="Seat_material" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="Base_xModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Client_code" ColumnName="Client_code" />
+                <ScalarProperty Name="Client_name" ColumnName="Client_name" />
+                <ScalarProperty Name="Review_code" ColumnName="Review_code" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client_adress">
+            <EntityTypeMapping TypeName="Base_xModel.Client_adress">
+              <MappingFragment StoreEntitySet="Client_adress">
+                <ScalarProperty Name="Adress_code" ColumnName="Adress_code" />
+                <ScalarProperty Name="Client_code" ColumnName="Client_code" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Postal_code" ColumnName="Postal_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="Base_xModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Order_code" ColumnName="Order_code" />
+                <ScalarProperty Name="Client_code" ColumnName="Client_code" />
+                <ScalarProperty Name="Date_order" ColumnName="Date_order" />
+                <ScalarProperty Name="Bicycle_code" ColumnName="Bicycle_code" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Review">
+            <EntityTypeMapping TypeName="Base_xModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Review_code" ColumnName="Review_code" />
+                <ScalarProperty Name="Client_Review" ColumnName="Client_Review" />
+                <ScalarProperty Name="Bicycle_code" ColumnName="Bicycle_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Base_xModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="Base_xModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Userpassword" ColumnName="Userpassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
