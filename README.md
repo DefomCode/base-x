@@ -5,7 +5,7 @@
 
 [![Техническое задание](https://i.imgur.com/rgbfIJ0.png)](https://disk.yandex.ru/i/uOYjnmv8QwEMCQ)
 
-[![Техническое задание](https://i.imgur.com/l2Mo2Up.png)](https://disk.yandex.ru/i/uOYjnmv8QwEMCQ)
+[![База данных](https://i.imgur.com/l2Mo2Up.png)](https://disk.yandex.ru/d/nj0AoyaCianfCA)
 
 ## Последняя версия 1.1.0
 Была добавлена кнопка сохранения данных всех таблиц в странице добавления строк в таблицы. Также незначительные изменения в дизайне.
